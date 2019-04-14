@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Android-Baking-App</string>
+    <string name="step">Step\u0020</string>
+
+    <string name="ingredients_label">Ingredients</string>
+    <string name="steps_label">Steps</string>
 </resources>
