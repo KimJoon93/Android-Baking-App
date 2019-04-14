@@ -49,7 +49,7 @@ public class MasterListIngredientsFragment extends Fragment {
 
         mMasterListBinding.rvIngredients.setAdapter(mIngredientsAdapter);
 
-        mIngredientsAdapter.addAll(mRecipe.getmIngredients());
+        mIngredientsAdapter.addAll(mRecipe.getIngredients());
 
         setNumIngredients();
 
@@ -68,7 +68,7 @@ public class MasterListIngredientsFragment extends Fragment {
     }
 
     private void setNumIngredients() {
-        int numIngredients = mRecipe.getmIngredients().size();
+        int numIngredients = mRecipe.getIngredients().size();
         mMasterListBinding.numIngredients.setText(String.valueOf(numIngredients));
     }
 }

@@ -22,7 +22,7 @@ public class Step implements Parcelable {
     @SerializedName("thumbnailURL")
     private String mThumbnailUrl;
 
-    private Step(Parcel in){
+    private Step(Parcel in) {
         mId = in.readInt();
         mShortDescription = in.readString();
         mDescription = in.readString();
@@ -42,46 +42,45 @@ public class Step implements Parcelable {
         }
     };
 
-    public int getmId() {
+    public void setStepId(int id) {
+        mId = id;
+    }
+
+    public int getStepId() {
         return mId;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public void setShortDescription(String shortDescription) {
+        mShortDescription = shortDescription;
     }
 
-    public String getmShortDescription() {
+    public String getShortDescription() {
         return mShortDescription;
     }
 
-    public void setmShortDescription(String mShortDescription) {
-        this.mShortDescription = mShortDescription;
+    public void setDescription(String description) {
+        mDescription = description;
     }
 
-    public String getmDescription() {
+    public String getDescription() {
         return mDescription;
     }
 
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
+    public void setVideoUrl(String videoUrl) {
+        mVideoUrl = videoUrl;
     }
 
-    public String getmVideoUrl() {
+    public String getVideoUrl() {
         return mVideoUrl;
     }
 
-    public void setmVideoUrl(String mVideoUrl) {
-        this.mVideoUrl = mVideoUrl;
+    public void setThumbnailUrl(String thumbnailUrl) {
+        mThumbnailUrl = thumbnailUrl;
     }
 
-    public String getmThumbnailUrl() {
+    public String getThumbnailUrl() {
         return mThumbnailUrl;
     }
-
-    public void setmThumbnailUrl(String mThumbnailUrl) {
-        this.mThumbnailUrl = mThumbnailUrl;
-    }
-
 
     @Override
     public int describeContents() {
@@ -89,11 +88,11 @@ public class Step implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mId);
-        parcel.writeString(mShortDescription);
-        parcel.writeString(mDescription);
-        parcel.writeString(mVideoUrl);
-        parcel.writeString(mThumbnailUrl);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mId);
+        dest.writeString(mShortDescription);
+        dest.writeString(mDescription);
+        dest.writeString(mVideoUrl);
+        dest.writeString(mThumbnailUrl);
     }
 }

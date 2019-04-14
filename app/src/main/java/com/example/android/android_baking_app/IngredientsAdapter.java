@@ -54,9 +54,9 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         }
 
         void bind(Ingredient ingredient) {
-            mIngredientsItemBinding.tvQuantity.setText(String.valueOf(ingredient.getmQuantity()));
-            mIngredientsItemBinding.tvMeasure.setText(ingredient.getmMeasure());
-            mIngredientsItemBinding.tvIngredient.setText(ingredient.getmIngredient());
+            mIngredientsItemBinding.tvQuantity.setText(String.valueOf(ingredient.getQuantity()));
+            mIngredientsItemBinding.tvMeasure.setText(ingredient.getMeasure());
+            mIngredientsItemBinding.tvIngredient.setText(ingredient.getIngredient());
         }
     }
 }

@@ -16,8 +16,7 @@ public class Ingredient implements Parcelable {
     @SerializedName("ingredient")
     private String mIngredient;
 
-
-    private Ingredient(Parcel in){
+    private Ingredient(Parcel in) {
         mQuantity = in.readDouble();
         mMeasure = in.readString();
         mIngredient = in.readString();
@@ -35,28 +34,28 @@ public class Ingredient implements Parcelable {
         }
     };
 
-    public double getmQuantity() {
+    public void setQuantity(double quantity) {
+        mQuantity = quantity;
+    }
+
+    public double getQuantity() {
         return mQuantity;
     }
 
-    public void setmQuantity(double mQuantity) {
-        this.mQuantity = mQuantity;
+    public void setMeasure(String measure) {
+        mMeasure = measure;
     }
 
-    public String getmMeasure() {
+    public String getMeasure() {
         return mMeasure;
     }
 
-    public void setmMeasure(String mMeasure) {
-        this.mMeasure = mMeasure;
+    public void setIngredient(String ingredient) {
+        mIngredient = ingredient;
     }
 
-    public String getmIngredient() {
+    public String getIngredient() {
         return mIngredient;
-    }
-
-    public void setmIngredient(String mIngredient) {
-        this.mIngredient = mIngredient;
     }
 
     @Override
@@ -65,9 +64,9 @@ public class Ingredient implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeDouble(mQuantity);
-        parcel.writeString(mMeasure);
-        parcel.writeString(mIngredient);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(mQuantity);
+        dest.writeString(mMeasure);
+        dest.writeString(mIngredient);
     }
 }

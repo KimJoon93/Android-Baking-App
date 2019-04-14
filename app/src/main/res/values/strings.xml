@@ -4,4 +4,22 @@
 
     <string name="ingredients_label">Ingredients</string>
     <string name="steps_label">Steps</string>
+
+    <string name="question_mark">�</string>
+    <string name="degree">\u00b0</string>
+
+    <string name="mp4">mp4</string>
+
+    <string name="empty_content_description">The image displayed when there are no visual media</string>
+
+    <string name="pause">pause</string>
+    <string name="play">play</string>
+    <string name="rewind">rewind</string>
+    <string name="fast_forward">fast forward</string>
+    <string name="notification_title">What\'s your cooking style?</string>
+    <string name="notification_text">Check out our recipes.</string>
+    <string name="baking_notification_channel_name">Primary</string>
+
+    <string name="bt_previous_content_description">Previous button</string>
+    <string name="bt_next_content_description">Next button</string>
 </resources>

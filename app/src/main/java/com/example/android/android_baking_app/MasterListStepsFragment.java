@@ -1,5 +1,6 @@
 package com.example.android.android_baking_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -18,12 +19,19 @@ import java.util.List;
 
 import static com.example.android.android_baking_app.Constant.EXTRA_RECIPE;
 
-public class MasterListStepsFragment extends Fragment {
+public class MasterListStepsFragment extends Fragment implements StepsAdapter.StepsAdapterOnClickHandler{
+
     private Recipe mRecipe;
 
     private StepsAdapter mStepsAdapter;
 
     private FragmentMasterListStepsBinding mStepsBinding;
+
+    OnStepClickListener mCallback;
+
+    public interface OnStepClickListener {
+        void onStepSelected(int stepIndex);
+    }
 
     public MasterListStepsFragment() {
     }
@@ -39,7 +47,7 @@ public class MasterListStepsFragment extends Fragment {
         mRecipe = getRecipeData();
         List<Step> steps = new ArrayList<>();
 
-        mStepsAdapter = new StepsAdapter(steps);
+        mStepsAdapter = new StepsAdapter(steps, this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mStepsBinding.rvSteps.setLayoutManager(layoutManager);
@@ -47,7 +55,7 @@ public class MasterListStepsFragment extends Fragment {
 
         mStepsBinding.rvSteps.setAdapter(mStepsAdapter);
 
-        mStepsAdapter.addAll(mRecipe.getmSteps());
+        mStepsAdapter.addAll(mRecipe.getSteps());
 
         setNumSteps();
 
@@ -67,7 +75,27 @@ public class MasterListStepsFragment extends Fragment {
 
     private void setNumSteps() {
         // Exclude zero step
-        int numSteps = mRecipe.getmSteps().size() - 1;
+        int numSteps = mRecipe.getSteps().size() - 1;
         mStepsBinding.numSteps.setText(String.valueOf(numSteps));
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try {
+            mCallback = (OnStepClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnStepClickListener");
+        }
+    }
+
+    @Override
+    public void onItemClick(int stepIndex) {
+        mCallback.onStepSelected(stepIndex);
+    }
+
 }

@@ -10,7 +10,6 @@ public class RetrofitClient {
     public static Retrofit getClient() {
         if (sRetrofit == null) {
             sRetrofit = new Retrofit.Builder()
-                    // Set the base URL
                     .baseUrl(BAKING_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

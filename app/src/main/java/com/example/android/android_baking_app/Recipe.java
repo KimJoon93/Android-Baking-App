@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe implements Parcelable {
+
     @SerializedName("id")
     private int mId;
 
@@ -27,7 +28,7 @@ public class Recipe implements Parcelable {
     @SerializedName("image")
     private String mImage;
 
-    private Recipe(Parcel in){
+    private Recipe(Parcel in) {
         mId = in.readInt();
         mName = in.readString();
         if (in.readByte() == 0x01) {
@@ -46,54 +47,6 @@ public class Recipe implements Parcelable {
         mImage = in.readString();
     }
 
-    public int getmId() {
-        return mId;
-    }
-
-    public void setmId(int mId) {
-        this.mId = mId;
-    }
-
-    public String getmName() {
-        return mName;
-    }
-
-    public void setmName(String mName) {
-        this.mName = mName;
-    }
-
-    public List<Ingredient> getmIngredients() {
-        return mIngredients;
-    }
-
-    public void setmIngredients(List<Ingredient> mIngredients) {
-        this.mIngredients = mIngredients;
-    }
-
-    public List<Step> getmSteps() {
-        return mSteps;
-    }
-
-    public void setmSteps(List<Step> mSteps) {
-        this.mSteps = mSteps;
-    }
-
-    public int getmServings() {
-        return mServings;
-    }
-
-    public void setmServings(int mServings) {
-        this.mServings = mServings;
-    }
-
-    public String getmImage() {
-        return mImage;
-    }
-
-    public void setmImage(String mImage) {
-        this.mImage = mImage;
-    }
-
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
         @Override
         public Recipe createFromParcel(Parcel in) {
@@ -106,28 +59,76 @@ public class Recipe implements Parcelable {
         }
     };
 
+    public void setId(int id) {
+        mId = id;
+    }
+
+    public int getId() {
+        return mId;
+    }
+
+    public void setName(String name) {
+        mName = name;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        mIngredients = ingredients;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return mIngredients;
+    }
+
+    public void setSteps(List<Step> steps) {
+        mSteps = steps;
+    }
+
+    public List<Step> getSteps() {
+        return mSteps;
+    }
+
+    public void setServings(int servings) {
+        mServings = servings;
+    }
+
+    public int getServings() {
+        return mServings;
+    }
+
+    public void setImage(String image) {
+        mImage = image;
+    }
+
+    public String getImage() {
+        return mImage;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mId);
-        parcel.writeString(mName);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mId);
+        dest.writeString(mName);
         if (mIngredients == null) {
-            parcel.writeByte((byte) (0x00));
+            dest.writeByte((byte) (0x00));
         } else {
-            parcel.writeByte((byte) (0x01));
-            parcel.writeList(mIngredients);
+            dest.writeByte((byte) (0x01));
+            dest.writeList(mIngredients);
         }
         if (mSteps == null) {
-            parcel.writeByte((byte) (0x00));
+            dest.writeByte((byte) (0x00));
         } else {
-            parcel.writeByte((byte) (0x01));
-            parcel.writeList(mSteps);
+            dest.writeByte((byte) (0x01));
+            dest.writeList(mSteps);
         }
-        parcel.writeInt(mServings);
-        parcel.writeString(mImage);
+        dest.writeInt(mServings);
+        dest.writeString(mImage);
     }
 }
